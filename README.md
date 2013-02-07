@@ -1,4 +1,4 @@
 Sensors
 =======
 
-I library of sensor models in Modelica
+A library of sensor models in Modelica
