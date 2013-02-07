@@ -12,9 +12,13 @@ algorithm
     w_estimate := 0;
     last_time := time;
   end when;
-  when {angle>next_angle, angle<next_angle-2*tooth_angle} then
-    next_angle := angle+tooth_angle;
-    last_time := time;
-    w_estimate :=tooth_angle/(time - pre(last_time));
+  when {angle>next_angle,
+        angle<next_angle-tooth_angle,
+        angle<next_angle-2*tooth_angle} then
+    if time>pre(last_time) then
+      next_angle := angle+tooth_angle;
+      last_time := time;
+      w_estimate :=tooth_angle/(time - pre(last_time));
+    end if;
   end when;
 end IntervalTime;
