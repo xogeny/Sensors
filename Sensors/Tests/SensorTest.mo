@@ -37,5 +37,4 @@ equation
       points={{71,0},{80,0},{80,-50},{8,-50}},
       color={0,0,127},
       smooth=Smooth.None));
-  annotation (Diagram(graphics));
 end SensorTest;
