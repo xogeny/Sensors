@@ -7,5 +7,4 @@ model TestToothCounter
       damping=1), redeclare replaceable Sensors.RotarySpeed.ToothCounter sensor(teeth=72,
         sample_rate=0.01));
   XogenyTest.AssertInitial iw(expected=0, actual=sensor.w_estimate);
-  annotation (experiment, __Dymola_experimentSetupOutput);
 end TestToothCounter;
