@@ -61,5 +61,5 @@ equation
       points={{-19,-40},{-10,-40},{-10,-6},{-2,-6}},
       color={0,0,127},
       smooth=Smooth.None));
-  annotation (Diagram(graphics), Icon(graphics));
+  annotation (experiment(StopTime=3, Tolerance=1e-008));
 end TestLinearCombination;

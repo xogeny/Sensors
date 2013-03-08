@@ -57,7 +57,5 @@ equation
 <p>The original waveform can be reconstructed from the equation:</p>
 <p>f = a0/2 + a[i]*sin(2*pi*F*i) + b[i]*cos(2*pi*F*i)</p>
 <p>This equation is in indicial notation, so there is an implied sum over i (from 1 to n).  Also note the factor of 1/2 on the a0 coefficient.</p>
-</html>"),
-    Diagram(graphics));
-
+</html>"));
 end FourierAnalysis;
