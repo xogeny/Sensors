@@ -1,3 +1,3 @@
 within Sensors;
-package Tests 
+package Tests
 end Tests;

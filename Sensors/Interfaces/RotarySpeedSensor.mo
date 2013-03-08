@@ -7,5 +7,4 @@ partial model RotarySpeedSensor "Base class for all rotary speed sensor models"
             10}})));
 protected
   Modelica.SIunits.Angle angle = flange.phi;
-  annotation (Icon(graphics), Diagram(graphics));
 end RotarySpeedSensor;
