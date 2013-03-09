@@ -1,6 +1,7 @@
 within Sensors.Tests.FourierAnalysis;
 model TestSine
-  SignalProcessing.FourierAnalysis analysis(F=1, n=5)
+
+  SignalProcessing.FourierAnalysis analysis(F0=1, n=5)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   Modelica.Blocks.Sources.Sine sine(
     freqHz=3,

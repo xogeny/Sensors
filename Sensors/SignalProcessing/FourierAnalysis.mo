@@ -1,6 +1,6 @@
 within Sensors.SignalProcessing;
 model FourierAnalysis "Compute Fourier coefficients of an input signal"
-  parameter Modelica.SIunits.Frequency F "Base frequency for analysis";
+  parameter Modelica.SIunits.Frequency F0 "Base frequency for analysis";
   parameter Integer n "Number of harmonics";
   Modelica.Blocks.Interfaces.RealInput u "Input signal"
     annotation (Placement(transformation(extent={{-140,-20},{-100,20}})));
@@ -15,10 +15,10 @@ model FourierAnalysis "Compute Fourier coefficients of an input signal"
   import Modelica.Constants.pi;
   import Modelica.Math.atan2;
 protected
-  parameter Modelica.SIunits.Time dt = 1.0/F "Period at base frequency";
-  Real s[n] = {sin(2*pi*F*i*time) for i in 1:n}
+  parameter Modelica.SIunits.Time dt = 1.0/F0 "Period at base frequency";
+  Real s[n] = {sin(2*pi*F0*i*time) for i in 1:n}
     "Sine waves at various frequencies";
-  Real c[n] = {cos(2*pi*F*i*time) for i in 1:n}
+  Real c[n] = {cos(2*pi*F0*i*time) for i in 1:n}
     "Cosine waves at various frequencies";
   Real a0i "Integral of bias term";
   Real ai[n] "Integral of cosine terms";

@@ -2,7 +2,7 @@ within Sensors.Tests.FourierAnalysis;
 model TestLinearCombination
   parameter Integer n = 10;
   parameter Modelica.SIunits.Frequency F0 = 1.0;
-  SignalProcessing.FourierAnalysis analysis(F=F0, n=n)
+  SignalProcessing.FourierAnalysis analysis(F0=F0, n=n)
     annotation (Placement(transformation(extent={{40,-10},{60,10}})));
   Modelica.Blocks.Sources.Sine sines[n](
     amplitude=linspace(
