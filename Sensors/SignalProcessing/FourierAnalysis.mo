@@ -5,14 +5,15 @@ model FourierAnalysis "Compute Fourier coefficients of an input signal"
   Modelica.Blocks.Interfaces.RealInput u "Input signal"
     annotation (Placement(transformation(extent={{-140,-20},{-100,20}})));
   Modelica.Blocks.Interfaces.RealOutput a0 "Signal bias"
-    annotation (Placement(transformation(extent={{100,50},{120,70}})));
+    annotation (Placement(transformation(extent={{100,70},{120,90}})));
   Modelica.Blocks.Interfaces.RealOutput a[n]
     "Fourier coefficients for cosine terms"
-    annotation (Placement(transformation(extent={{100,-10},{120,10}})));
+    annotation (Placement(transformation(extent={{100,30},{120,50}})));
   Modelica.Blocks.Interfaces.RealOutput b[n]
     "Fourier coefficients for sine terms"
-    annotation (Placement(transformation(extent={{100,-70},{120,-50}})));
+    annotation (Placement(transformation(extent={{100,-10},{120,10}})));
   import Modelica.Constants.pi;
+  import Modelica.Math.atan2;
 protected
   parameter Modelica.SIunits.Time dt = 1.0/F "Period at base frequency";
   Real s[n] = {sin(2*pi*F*i*time) for i in 1:n}
@@ -23,6 +24,11 @@ protected
   Real ai[n] "Integral of cosine terms";
   Real bi[n] "Integral of sine terms";
   Real f "Reconstructed function";
+public
+  Modelica.Blocks.Interfaces.RealOutput mag[n] "Magnitude for each frequency"
+    annotation (Placement(transformation(extent={{100,-50},{120,-30}})));
+  Modelica.Blocks.Interfaces.RealOutput phase[n] "Phase for each frequency"
+    annotation (Placement(transformation(extent={{100,-90},{120,-70}})));
 initial equation
   a0i = 0;
   ai = zeros(n);
@@ -42,6 +48,8 @@ equation
       reinit(bi[i], 0);
     end for;
   end when;
+  mag = {sqrt(a[i]^2+b[i]^2) for i in 1:n};
+  phase = {atan2(b[i], a[i]) for i in 1:n};
   annotation (
     Icon(graphics={Bitmap(
           extent={{-100,120},{100,-80}},
@@ -57,5 +65,6 @@ equation
 <p>The original waveform can be reconstructed from the equation:</p>
 <p>f = a0/2 + a[i]*sin(2*pi*F*i) + b[i]*cos(2*pi*F*i)</p>
 <p>This equation is in indicial notation, so there is an implied sum over i (from 1 to n).  Also note the factor of 1/2 on the a0 coefficient.</p>
-</html>"));
+</html>"),
+    Diagram(graphics));
 end FourierAnalysis;

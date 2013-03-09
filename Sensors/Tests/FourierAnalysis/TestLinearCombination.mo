@@ -37,9 +37,17 @@ model TestLinearCombination
   Modelica.Blocks.Math.Add add(k1=1, k2=1)
     annotation (Placement(transformation(extent={{0,-10},{20,10}})));
   XogenyTest.AssertFinal check_b[n](expected=sines.amplitude, actual=analysis.b)
-    annotation (Placement(transformation(extent={{60,30},{80,50}})));
+    annotation (Placement(transformation(extent={{60,60},{80,80}})));
   XogenyTest.AssertFinal check_a[n](expected=cosines.amplitude, actual=analysis.a)
-    annotation (Placement(transformation(extent={{60,-50},{80,-30}})));
+    annotation (Placement(transformation(extent={{60,20},{80,40}})));
+  XogenyTest.AssertFinal check_mag[n](expected=mags, actual=analysis.mag)
+    annotation (Placement(transformation(extent={{60,-40},{80,-20}})));
+  XogenyTest.AssertFinal check_phase[n](expected=phases, actual=
+        analysis.phase)
+    annotation (Placement(transformation(extent={{60,-80},{80,-60}})));
+protected
+  parameter Real mags[n] = {sqrt(sines[i].amplitude^2+cosines[i].amplitude^2) for i in 1:n};
+  parameter Real phases[n] = {Modelica.Math.atan2(sines[i].amplitude,cosines[i].amplitude) for i in 1:n};
 equation
   connect(sines.y, sine_sum.u) annotation (Line(
       points={{-59,40},{-42,40}},

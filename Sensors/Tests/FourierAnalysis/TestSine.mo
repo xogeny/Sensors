@@ -7,7 +7,7 @@ model TestSine
     amplitude=1,
     offset=1)
     annotation (Placement(transformation(extent={{-60,-10},{-40,10}})));
-  XogenyTest.AssertFinal check_b(expected=sine.amplitude, actual=analysis.b[1])
+  XogenyTest.AssertFinal check_b(expected=sine.amplitude, actual=analysis.b[3])
     annotation (Placement(transformation(extent={{40,30},{60,50}})));
   XogenyTest.AssertFinal offset_check(expected=2*sine.offset, actual=analysis.a0)
     annotation (Placement(transformation(extent={{40,-10},{60,10}})));
@@ -18,5 +18,7 @@ equation
       points={{-39,0},{-12,0}},
       color={0,0,127},
       smooth=Smooth.None));
-  annotation (Diagram(graphics));
+  annotation (Diagram(graphics),
+    experiment(StopTime=5, Tolerance=1e-008),
+    __Dymola_experimentSetupOutput);
 end TestSine;
